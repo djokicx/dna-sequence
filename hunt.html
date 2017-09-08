@@ -1,0 +1,87 @@
+<!--Student: Dejan Djokic
+    Mentor: Patricia Francis-Lyon
+	Subject: Introduction to Computer Science 110
+	Date: 10/3/13
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>DNA Code Analysis</title>
+</head>
+<body style="background-image:url(background.jpg)">
+<h1>Please Provide Your Information</h1>
+
+Name: <br> <input type=text size=20 id="name"><br><br>
+Last Name: <br> <input type=text size=20 id="lname"><br><br>
+DNA: <br> <input type=text size=20 id="dna"><br><br>
+<p><button onclick="display()">submit</button></p>
+
+<p id="d1"></p>
+<p id="d2"></p>
+<p id="d3"></p>
+<p id="d4"></p>
+<p id="d5"></p>
+
+<script>
+
+function display() 
+{
+  var val1 = countCAG();
+  var val2 = prediction(countCAG());
+  var val3 = document.getElementById('name').value;
+  var val4 = document.getElementById('lname').value;
+  var dna = document.getElementById('dna').value;
+ 
+  
+  document.getElementById("d1").innerHTML=val3;
+  document.getElementById("d2").innerHTML=val4;
+  document.getElementById("d3").innerHTML=dna;
+  document.getElementById("d4").innerHTML=val1;
+  document.getElementById("d5").innerHTML=val2;
+}
+
+function countCAG()
+{
+	var dna = document.getElementById('dna').value;
+	var index = 0;
+    var lastindex = 3;
+    var count = 0;
+    while (lastindex <= dna.length)
+	{
+        if (dna.slice(index, [lastindex]) == 'CAG')
+			count += 1;
+        else
+           break;
+        index += 3;
+        lastindex += 3;
+		}
+    return count;
+}
+
+function prediction(numCAG)
+{
+		if (numCAG < 28)
+{
+        return ('Normal, Unaffected');
+}
+	else if (numCAG >= 28 && numCAG < 37) 
+{
+        return ('Intermediate, Unaffected');
+}
+    else if (numCAG >= 37 && numCAG <=42)
+{
+        return ('Reduced Penetrance, Somewhat Affected');
+}
+	else if (numCAG > 42)
+{
+        return ('Full Penetrance, Affected');
+}
+    else
+{
+        return "Invalid DNA Code";
+}
+}
+	
+</script>
+</body>
+</html>
